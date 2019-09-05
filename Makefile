@@ -2,26 +2,23 @@
 # $FreeBSD: head/devel/spin/Makefile 508082 2019-08-04 09:07:47Z antoine $
 
 PORTNAME=	spin
-PORTVERSION=	6.4.8
-PORTREVISION=	2
+PORTVERSION=	6.5.0
 CATEGORIES=	devel
-MASTER_SITES=	http://spinroot.com/spin/Src/
-DISTNAME=	spin${PORTVERSION:S/.//g}
 DIST_SUBDIR=	spin
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	On-the-fly verification system for asynchronous concurrent systems
 
 LICENSE=	BSD3CLAUSE
-LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE_FILE=	${WRKSRC}/Src/LICENSE
 
-BROKEN=		depends on the gcc meta port
-DEPRECATED=	Broken for more than 6 months
-EXPIRATION_DATE=	2019-09-04
+RUN_DEPENDS=	gcc:lang/gcc9
 
-RUN_DEPENDS=	gcc:lang/gcc
+USE_GITHUB=	yes
+GH_ACCOUNT=	nimble-code
+GH_PROJECT=	Spin
+GH_TAGNAME=	version-${PORTVERSION}
 
-WRKSRC=		${WRKDIR}/Spin/Src${PORTVERSION}
 MAKEFILE=	makefile
 ALL_TARGET=	spin
 MAKE_ARGS=	CC="${CC}" CFLAGS="${CFLAGS} -DNXT"
